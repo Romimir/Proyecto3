@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cctype>
 #include <conio.h>
-
+#include <locale>
 using namespace std;
 
 struct Point
@@ -18,7 +18,7 @@ struct Point
     vector<Point*> Vecinos;
 };
 
-struct Jugador 
+struct Jugador
 {
     int x, y;
     int Tesoro;
@@ -29,10 +29,10 @@ struct Jugador
 const int Ancho = 20;
 const int Alto = 20;
 
-const char LABERINTO1[Alto][Ancho] = 
+const char LABERINTO1[Alto][Ancho] =
 {
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
-    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X',' ',' ',' ',' ',' ','X'},
+    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X',' ',' ',' ',' ',' ','X'},
     {'X',' ','T',' ','X','X','X','X','X','X','X',' ',' ','X',' ','X','X','X',' ','X'},
     {'X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','T',' ',' ',' ','X',' ',' ',' ','X'},
     {'X',' ','X','X','X',' ','X','X','X','X','X','X','X','X','X','X','X','X','T','X'},
@@ -55,8 +55,8 @@ const char LABERINTO1[Alto][Ancho] =
 
 const char LABERINTO2[Alto][Ancho] =
 {
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ',' ',' ',' ','X'},
+    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ',' ',' ',' ','X'},
     {'X',' ','X','X','X','T','X','X',' ','X',' ',' ',' ',' ','X','X','X','X','T','X'},
     {'X',' ','T',' ',' ',' ',' ','X',' ','X',' ','X',' ','T','X','X',' ',' ',' ','X'},
     {'X',' ','X','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ','X',' ','X'},
@@ -77,9 +77,9 @@ const char LABERINTO2[Alto][Ancho] =
     {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
 
-const char LABERINTO3[Alto][Ancho] = 
+const char LABERINTO3[Alto][Ancho] =
 {
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
     {'X',' ',' ',' ',' ','X','X',' ','X','X',' ','X','X','X','X','X',' ',' ','C','X'},
     {'X','X','X',' ','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X'},
     {'X',' ',' ',' ','X',' ',' ',' ','X','X','T','X','X','X','X','X','X',' ',' ','X'},
@@ -103,7 +103,7 @@ const char LABERINTO3[Alto][Ancho] =
 
 const char LABERINTO4[Alto][Ancho] =
 {
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
     {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ',' ',' ','X'},
     {'X','X','X','T','X','X','X',' ','X','X','T','X','X','X',' ','X','X','X','X','X'},
     {'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X'},
@@ -127,7 +127,7 @@ const char LABERINTO4[Alto][Ancho] =
 
 Point Laberinto[Alto][Ancho];
 
-struct Pregunta 
+struct Pregunta
 {
     string texto;
     string respuesta;
@@ -152,7 +152,7 @@ int contadorPreguntas = 0;
 
 void InicializarLaberinto(const char LaberintoMatriz[Alto][Ancho], Point Laberinto[Alto][Ancho])
 {
-    for (int y = 0; y < Alto; ++y) 
+    for (int y = 0; y < Alto; ++y)
     {
         for (int x = 0; x < Ancho; ++x)
         {
@@ -173,7 +173,7 @@ void NodosConectados(Point Laberinto[Alto][Ancho])
     {
         for (int x = 0; x < Ancho; ++x)
         {
-            if (Laberinto[y][x].c != 'X') 
+            if (Laberinto[y][x].c != 'X')
             {
                 if (x > 0 && Laberinto[y][x - 1].c != 'X') Laberinto[y][x].Vecinos.push_back(&Laberinto[y][x - 1]);
                 if (x < Ancho - 1 && Laberinto[y][x + 1].c != 'X') Laberinto[y][x].Vecinos.push_back(&Laberinto[y][x + 1]);
@@ -184,74 +184,74 @@ void NodosConectados(Point Laberinto[Alto][Ancho])
     }
 }
 
-void textcolor(int color)
+void ColorTexto(int color)
 {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void ImprimirLaberinto(Point Laberinto[Alto][Ancho], Jugador jugador, int jugador_numero) 
+void ImprimirLaberinto(Point Laberinto[Alto][Ancho], Jugador jugador, int jugador_numero)
 {
     int colorJugador = (jugador_numero == 1) ? 9 : 10;
-    for (int y = 0; y < Alto; ++y) 
+    for (int y = 0; y < Alto; ++y)
     {
-        for (int x = 0; x < Ancho; ++x) 
+        for (int x = 0; x < Ancho; ++x)
         {
-            if (Laberinto[y][x].c == 'P') 
+            if (Laberinto[y][x].c == 'P')
             {
-                textcolor(colorJugador);
+                ColorTexto(colorJugador);
             }
             else if (Laberinto[y][x].c == 'C') {
-                textcolor(14);
+                ColorTexto(14);
             }
             else if (Laberinto[y][x].c == 'T') {
-                textcolor(12);
+                ColorTexto(12);
             }
             else {
-                textcolor(7);
+                ColorTexto(7);
             }
             cout << Laberinto[y][x].c << ' ';
         }
         cout << endl;
     }
-    textcolor(7);
+    ColorTexto(7);
 }
 
 void moverJugador(Jugador& jugador, Point Laberinto[Alto][Ancho], char move, int jugador_numero)
 {
     move = tolower(move);
     int nuevoX = jugador.x, nuevoY = jugador.y;
-    switch (move) 
+    switch (move)
     {
-        case 'w': 
-                nuevoY--; 
-            break;
-        case 's':
-                nuevoY++; 
-            break;
-        case 'a':
-                nuevoX--; 
-            break;
-        case 'd':
-                nuevoX++; 
-            break;
-        default:
+    case 'w':
+        nuevoY--;
+        break;
+    case 's':
+        nuevoY++;
+        break;
+    case 'a':
+        nuevoX--;
+        break;
+    case 'd':
+        nuevoX++;
+        break;
+    default:
         cout << "Movimiento no válido. Use w, a, s, d para moverse." << endl;
         return;
     }
 
-    if (nuevoX < 0 || nuevoX >= Ancho || nuevoY < 0 || nuevoY >= Alto) 
+    if (nuevoX < 0 || nuevoX >= Ancho || nuevoY < 0 || nuevoY >= Alto)
     {
         cout << "Movimiento fuera de los límites del laberinto." << endl;
         return;
     }
 
-    if (Laberinto[nuevoY][nuevoX].c == 'X') 
+    if (Laberinto[nuevoY][nuevoX].c == 'X')
     {
         cout << "¡Colisión con una pared!" << endl;
         return;
     }
 
-    if (Laberinto[nuevoY][nuevoX].c == 'T') 
+    if (Laberinto[nuevoY][nuevoX].c == 'T')
     {
         jugador.Tesoro++;
         cout << "¡Tesoro recolectado!" << endl;
@@ -266,15 +266,21 @@ void moverJugador(Jugador& jugador, Point Laberinto[Alto][Ancho], char move, int
         Laberinto[jugador.y][jugador.x].c = ' ';
     }
 
+    if (move == 'w' || move == 's') {
+        jugador.Movimientos += 10;  // Sumar 10 para movimiento vertical
+    }
+    else if (move == 'a' || move == 'd') {
+        jugador.Movimientos += 5;   // Sumar 5 para movimiento horizontal
+    }
+
     jugador.x = nuevoX;
     jugador.y = nuevoY;
     Laberinto[jugador.y][jugador.x].c = 'P';
-    jugador.Movimientos++;
     system("CLS");
     ImprimirLaberinto(Laberinto, jugador, jugador_numero);
 }
 
-bool responderPregunta() 
+bool responderPregunta()
 {
     if (contadorPreguntas >= indicesPreguntas.size())
     {
@@ -285,7 +291,7 @@ bool responderPregunta()
     Pregunta p = preguntas[index];
 
     string respuesta;
-    while (true) 
+    while (true)
     {
         cout << p.texto << " (si/no): ";
         cin >> respuesta;
@@ -293,11 +299,11 @@ bool responderPregunta()
         // Convertir respuesta a minúsculas
         transform(respuesta.begin(), respuesta.end(), respuesta.begin(), ::tolower);
 
-        if (respuesta == "si" || respuesta == "no") 
+        if (respuesta == "si" || respuesta == "no")
         {
             break;
         }
-        else 
+        else
         {
             cout << "Respuesta no válida. Por favor, responde 'si' o 'no'." << endl;
         }
@@ -308,7 +314,7 @@ bool responderPregunta()
         cout << "Respuesta correcta!" << endl;
         return true;
     }
-    else 
+    else
     {
         cout << "Respuesta incorrecta." << endl;
         return false;
@@ -318,15 +324,15 @@ bool responderPregunta()
 void jugarLaberinto(Jugador& jugador, Point Laberinto[Alto][Ancho], int jugador_numero)
 {
     char Opcion;
-    while (true) 
+    while (true)
     {
         system("CLS");
         ImprimirLaberinto(Laberinto, jugador, jugador_numero);
-        Opcion = getch();
+        Opcion = _getch();
         // Convertir opción a minúsculas
         Opcion = tolower(Opcion);
 
-        if (Opcion == 'a' || Opcion == 's' || Opcion  == 'd' || Opcion == 'w')
+        if (Opcion == 'a' || Opcion == 's' || Opcion == 'd' || Opcion == 'w')
         {
             moverJugador(jugador, Laberinto, Opcion, jugador_numero);
 
@@ -335,17 +341,17 @@ void jugarLaberinto(Jugador& jugador, Point Laberinto[Alto][Ancho], int jugador_
                 if (responderPregunta()) {
                     jugador.Corona = true;
                 }
-                textcolor(jugador_numero == 1 ? 9 : 10);
+                ColorTexto(jugador_numero == 1 ? 9 : 10);
                 cout << "Movimientos realizados: " << jugador.Movimientos << endl;
                 cout << "Tesoros recolectados: " << jugador.Tesoro << endl;
                 cout << "Corona : " << (jugador.Corona ? "Si" : "No") << endl;
-                textcolor(7);
+                ColorTexto(7);
                 break;
             }
         }
         else
         {
-            textcolor(12);
+            ColorTexto(12);
             cout << "Recuerda que para moverte debes usar 'A', 'S', 'D', 'W'." << endl;
         }
     }
@@ -355,64 +361,54 @@ void jugarLaberinto(Jugador& jugador, Point Laberinto[Alto][Ancho], int jugador_
 void imprimirResultados(Jugador jugador1, Jugador jugador2)
 {
     cout << "Jugador\tMovimientos\tTesoros\tCorona\n";
-    textcolor(9);
+    ColorTexto(9);
     cout << "1\t" << jugador1.Movimientos << "\t\t" << jugador1.Tesoro << "\t" << (jugador1.Corona ? "Si" : "No") << "\n";
-    textcolor(10);
+    ColorTexto(10);
     cout << "2\t" << jugador2.Movimientos << "\t\t" << jugador2.Tesoro << "\t" << (jugador2.Corona ? "Si" : "No") << "\n";
 
-    if (jugador1.Movimientos < jugador2.Movimientos) 
+    if (jugador1.Movimientos < jugador2.Movimientos)
     {
-        textcolor(9);
+        ColorTexto(9);
         cout << "\nGanador: Jugador 1\n";
     }
-    else if (jugador2.Movimientos < jugador1.Movimientos) 
+    else if (jugador2.Movimientos < jugador1.Movimientos)
     {
-        textcolor(10);
+        ColorTexto(10);
         cout << "\nGanador: Jugador 2\n";
     }
-    else 
+    else
     {
-        textcolor(11);
+        ColorTexto(11);
         cout << "\nEs un empate\n";
     }
-    textcolor(7);
+    ColorTexto(7);
 }
 
-void seleccionarLaberinto(Point Laberinto[Alto][Ancho]) 
+void seleccionarLaberinto(Point Laberinto[Alto][Ancho])
 {
     srand(time(0));
     int Opcion = rand() % 4 + 1;
     switch (Opcion)
     {
-    case 1:
-        InicializarLaberinto(LABERINTO1, Laberinto);
-        break;
-    case 2:
-        InicializarLaberinto(LABERINTO2, Laberinto);
-        break;
-    case 3:
-        InicializarLaberinto(LABERINTO3, Laberinto);
-        break;
-    case 4:
-        InicializarLaberinto(LABERINTO4, Laberinto);
-        break;
-    default:
-        cout << "Opción no válida. Seleccionando el Laberinto 1 por defecto." << endl;
-        InicializarLaberinto(LABERINTO1, Laberinto);
-        break;
+        case 1:
+            InicializarLaberinto(LABERINTO1, Laberinto);
+            break;
+        case 2:
+            InicializarLaberinto(LABERINTO2, Laberinto);
+            break;
+        case 3:
+            InicializarLaberinto(LABERINTO3, Laberinto);
+            break;
+        case 4:
+            InicializarLaberinto(LABERINTO4, Laberinto);
+            break;
     }
     NodosConectados(Laberinto);
 }
 
-int main() 
+int main()
 {
-    srand(time(0));
-    for (int i = 0; i < preguntas.size(); ++i)
-    {
-        indicesPreguntas.push_back(i);
-    }
-    random_shuffle(indicesPreguntas.begin(), indicesPreguntas.end());
-
+    setlocale(LC_CTYPE, "es_ES.UTF-8");
     char Opcion;
     Point Laberinto1[Alto][Ancho];
     Jugador jugador1 = { 1, 1, 0, 0, false };
@@ -420,7 +416,15 @@ int main()
 
     char Opcion_Menu = '0';
 
-    do 
+    srand(time(0));
+    for (int i = 0; i < preguntas.size(); ++i)
+    {
+        indicesPreguntas.push_back(i);
+    }
+    random_shuffle(indicesPreguntas.begin(), indicesPreguntas.end());
+    
+
+    do
     {
         cout << "~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~" << endl;
         cout << "|             Bienvenid@ al laberinto              |" << endl;
@@ -428,7 +432,7 @@ int main()
         cout << "|                    1-. Jugar                     |" << endl;
         cout << "|                    2-. Salir                     |" << endl;
         cout << " " << endl;
-        cin >> Opcion_Menu;
+        Opcion_Menu = _getch();
         cout << " " << endl;
         cout << "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -" << endl;
         cout << " " << endl;
@@ -437,72 +441,77 @@ int main()
         {
             case '1':
 
+            do
+            {
+                int laberintoSeleccionado;
+
                 do
                 {
-                    int laberintoSeleccionado;
+                    seleccionarLaberinto(Laberinto1);
 
-                    do 
+                    system("CLS");
+                    cout << "~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~" << endl;
+                    cout << "|           A -> Izquierda    S -> Abajo           |" << endl;
+                    cout << "|             D-> Derecha   W-> Arriba             |" << endl;
+                    cout << "|   Debes llegar hasta la corona para finalizar    |" << endl;
+                    cout << "|       Cuidado! cuando agarres un tesoro (T)      |" << endl;
+                    cout << "|   el lugar en el que estaban sera una pareded    |" << endl;
+                    cout << "|      al llegar a la corona tienes responder      |" << endl;
+                    cout << "|             una pregunta de si o no              |" << endl;
+                    cout << "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -" << endl;
+                    Sleep(5000);
+                    system("CLS");
+                    jugador1 = { 1, 1, 0, 0, false };
+                    jugador2 = { 1, 1, 0, 0, false };
+                    contadorPreguntas = 0;  // Reiniciar el contador de preguntas
+
+                    ColorTexto(9);
+                    cout << "Jugador 1 tu turno:\n";
+                    Sleep(2000);
+                    system("CLS");
+                    ColorTexto(7);
+                    Laberinto1[jugador1.y][jugador1.x].c = 'P';
+                    jugarLaberinto(jugador1, Laberinto1, 1);
+
+                    seleccionarLaberinto(Laberinto1);
+                    jugador2 = { 1, 1, 0, 0, false };
+                    Laberinto1[jugador2.y][jugador2.x].c = 'P';
+                    system("CLS");
+                    ColorTexto(10);
+                    cout << "Jugador 2 tu turno:\n";
+                    Sleep(2000);
+                    system("CLS");
+                    ColorTexto(7);
+                    jugarLaberinto(jugador2, Laberinto1, 2);
+
+                    imprimirResultados(jugador1, jugador2);
+                    cout << "¿Desea seguir jugando? (si|no): ";
+                    string respuesta;
+                    cin >> respuesta;
+                    // Convertir la respuesta a minúsculas
+                    transform(respuesta.begin(), respuesta.end(), respuesta.begin(), ::tolower);
+                    // Validar respuesta
+                    while (respuesta != "si" && respuesta != "no")
                     {
-                        seleccionarLaberinto(Laberinto1);
-
-                        system("CLS");
-                        cout << "~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~" << endl;
-                        cout << "|           A -> Izquierda    S -> Abajo           |" << endl;
-                        cout << "|             D-> Derecha   W-> Arriba             |" << endl;
-                        cout << "|   Debes llegar hasta la corona para finalizar    |" << endl;
-                        cout << "|       Cuidado! cuando agarres un tesoro (T)      |" << endl;
-                        cout << "|   el lugar en el que estaban sera una pareded    |" << endl;
-                        cout << "|      al llegar a la corona tienes responder      |" << endl;
-                        cout << "|             una pregunta de si o no              |" << endl;
-                        cout << "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -" << endl;
-                        Sleep(5000);
-                        system("CLS");
-                        jugador1 = { 1, 1, 0, 0, false };
-                        jugador2 = { 1, 1, 0, 0, false };
-                        contadorPreguntas = 0;  // Reiniciar el contador de preguntas
-
-                        textcolor(9);
-                        cout << "Jugador 1 tu turno:\n";
-                        Sleep(2000);
-                        system("CLS");
-                        textcolor(7);
-                        Laberinto1[jugador1.y][jugador1.x].c = 'P';
-                        jugarLaberinto(jugador1, Laberinto1, 1);
-
-                        seleccionarLaberinto(Laberinto1);
-                        jugador2 = { 1, 1, 0, 0, false };
-                        Laberinto1[jugador2.y][jugador2.x].c = 'P';
-                        system("CLS");
-                        textcolor(10);
-                        cout << "Jugador 2 tu turno:\n";
-                        Sleep(2000);
-                        system("CLS");
-                        textcolor(7);
-                        jugarLaberinto(jugador2, Laberinto1, 2);
-
-                        imprimirResultados(jugador1, jugador2);
-                        cout << "¿Desea seguir jugando? (si|no): ";
-                        string respuesta;
+                        cout << "Por favor, ingrese 'si' o 'no': ";
                         cin >> respuesta;
-                        // Convertir la respuesta a minúsculas
                         transform(respuesta.begin(), respuesta.end(), respuesta.begin(), ::tolower);
-                        // Validar respuesta
-                        while (respuesta != "si" && respuesta != "no")
-                        {
-                            cout << "Por favor, ingrese 'si' o 'no': ";
-                            cin >> respuesta;
-                            transform(respuesta.begin(), respuesta.end(), respuesta.begin(), ::tolower);
-                        }
-                        Opcion = respuesta == "si" ? 's' : 'n';
-                    } while (Opcion == 's');
-                } while (!Opcion);
+                    }
+                    Opcion = respuesta == "si" ? 's' : 'n';
+                } while (Opcion == 's');
+            } while (!Opcion);
+            break;
+
+            case '2':
+                cout << "Saliendo del programa. . ." << endl;
                 break;
-            
-            default:
-                cout << " " << endl;
-                cout << "|     Por favor ingrese una opcion valida. . .     |" << endl;
-                cout << " " << endl;
-                break;
+
+
+        default:
+            cout << " " << endl;
+            cout << "|     Por favor ingrese una opcion válida. . .     |" << endl;
+            cout << " " << endl;
+            break;
         }
     } while (Opcion_Menu != '2');
     return 0;
