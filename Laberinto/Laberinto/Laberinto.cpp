@@ -24,41 +24,188 @@ struct Jugador {
     int Tesoro;        // Contador de tesoros recolectados
     int Movimientos;   // Total de movimientos realizados
     bool Corona;       // Indicador de si el jugador ha obtenido la corona
+    int Puntaje;
 };
 
 #pragma region Laberintos
 
 // Dimensiones del laberinto
-const int Ancho = 20;
-const int Alto = 20;
+const int Ancho = 30;
+const int Alto = 30;
 
 // Definición de laberintos
 // ' ' representa caminos, 'X' representa muros, 'T' representa tesoros, 'C' representa la corona
 // Matriz del laberinto 1
+
+
+/*
+  XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X     X   X          X   X CXX
+XTXXX   X XXXX XXX XXX XXX XXX
+X   X XXX X    X   T     X   X
+XX XX X   X XXXXXX X X X  XX X
+X     X XXX X      X XXXX XX X
+XXXTXXX X   XXX XX X    X T  X
+X   X   X XXX   XXXXXX XX X XX
+X X X XXX X   X  X   X   XX  X
+X X       X XXXX X X XXXXX X X
+XTXXX XXXXXXXXXX X X     X X X
+X           XXXX X XXXTX X   X
+XXX XXXXXXX    XXX     X   XXX
+X         X XXXX XXXXX XXXXXXX
+XXX X XXX X X        X       X
+X   X  X  XXXXXX X X XXXXXXX X
+X X XX XX   X    X X         X
+X  XX  XXXXXX XXXXXXX XXXXXXXX
+XX XXXXX      X   X XXX      X
+XX     X XXXTXX XXX X   X XXXX
+XXXXXX X X      X X X XXX X  X
+X    X XXX XXXXXX X XXX     XX
+X XX X     X      X     XXX XX
+X  X   XX X XXXXXXXXXTX X X  X
+XXXXXXXX  X   XX X X  X X XXXX
+X    X   XX X  X X X XXXX    X
+X XXXX X XX XX X       XXTXX X
+X T XX X X X X XXX X X       X
+XXX    X   X X     X XXXXXXX X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+
+
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXCXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXCXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXCXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
 const char LABERINTO1[Alto][Ancho] =
 {
-    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
-    {' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X',' ',' ',' ',' ',' ','X'},
-    {'X',' ','T',' ','X','X','X','X','X','X','X',' ',' ','X',' ','X','X','X',' ','X'},
-    {'X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','T',' ',' ',' ','X',' ',' ',' ','X'},
-    {'X',' ','X','X','X',' ','X','X','X','X','X','X','X','X','X','X','X','X','T','X'},
-    {'X',' ',' ',' ',' ',' ','T',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
-    {'X',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X',' ','X',' ','X'},
-    {'X',' ','T',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ','X'},
-    {'X',' ','X','X','X',' ','X',' ','X','X',' ','X',' ','X',' ',' ',' ','X','X','X'},
-    {'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ','T',' ','X','X','X',' ','X',' ','X'},
-    {'X',' ','X','X','X','X','X','X','X','X','X','X',' ',' ',' ','X',' ','X',' ','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X',' ','X',' ','X','X','X'},
-    {'X','X','X',' ','X',' ','X',' ',' ','X',' ','T',' ','X',' ','X',' ',' ',' ','X'},
-    {'X',' ','T',' ','X',' ','X','X','X','X',' ','X',' ','X',' ','X','X','X','X','X'},
-    {'X',' ','X',' ','X','X','X',' ',' ',' ',' ','X',' ',' ',' ','X',' ',' ','C','X'},
-    {'X',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X','X','X',' ','X','X','X'},
-    {'X',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
-    {'X',' ','X','T','X',' ','X',' ','X','X','X','X',' ','X','X','X','X','X',' ','X'},
-    {'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ','T',' ',' ',' ',' ',' ',' ',' ','X'},
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
+    {' ',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {'X',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ','C','X','X'},
+    {'X','T','X','X','X',' ',' ',' ','X',' ','X','X','X','X',' ','X','X','X',' ','X','X','X',' ','X','X','X',' ','X','X','X'},
+    {'X',' ',' ',' ','X',' ','X','X','X',' ','X',' ',' ',' ',' ','X',' ',' ',' ','T',' ',' ',' ',' ',' ','X',' ',' ',' ','X'},
+    {'X','X',' ','X','X',' ','X',' ',' ',' ','X',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ',' ','X','X',' ','X'},
+    {'X',' ',' ',' ',' ',' ','X',' ','X','X','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X','X','X','X',' ','X','X',' ','X'},
+    {'X','X','X','T','X','X','X',' ','X',' ',' ',' ','X','X','X',' ','X','X',' ','X',' ',' ',' ',' ','X',' ','T',' ',' ','X'},
+    {'X',' ',' ',' ','X',' ',' ',' ','X',' ','X','X','X',' ',' ',' ','X','X',' ','X',' ','X',' ','X','X',' ','X',' ','X','X'},
+    {'X',' ','X',' ','X',' ','X','X','X',' ','X',' ',' ',' ','X',' ',' ','X',' ',' ',' ','X',' ',' ',' ','X','X',' ',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X','X',' ','X',' ','X',' ','X','X','X','X','X',' ','X',' ','X'},
+    {'X','T','X','X','X',' ','X','X','X','X','X','X','X',' ',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ','X',' ','X',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X',' ','X',' ','X','X','X','T','X',' ','X',' ',' ',' ','X'},
+    {'X','X','X',' ','X','X','X','X','X','X','X',' ',' ',' ',' ','X','X','X',' ',' ',' ',' ',' ','X',' ',' ',' ','X','X','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X','X','X',' ','X','X','X','X','X',' ','X','X','X','X','X','X','X'},
+    {'X','X','X',' ','X',' ','X','X','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ',' ','X',' ',' ','X',' ',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X','X','X','X','X','X','X',' ','X'},
+    {'X',' ','X',' ','X','X',' ','X','X',' ',' ',' ','X',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ','X','X',' ',' ','X','X','X','X','X','X',' ','X','X','X','X','X','X','X',' ','X','X','X','X','X','X','X','X'},
+    {'X','X',' ','X','X','X','X','X',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ','X','X','X',' ',' ',' ',' ',' ',' ','X'},
+    {'X','X',' ',' ',' ',' ',' ','X',' ','X','X','X','T','X','X',' ','X','X','X',' ','X',' ',' ',' ','X',' ','X','X','X','X'},
+    {'X','X','X','X','X','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X','X','X',' ','X',' ',' ','X'},
+    {'X',' ',' ',' ',' ','X',' ','X','X','X',' ','X','X','X','X','X','X',' ','X',' ','X','X','X',' ',' ',' ',' ',' ','X','X'},
+    {'X',' ','X','X',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ','X','X','X',' ','X','X'},
+    {'X',' ',' ','X',' ',' ',' ','X','X',' ','X',' ','X','X','X','X','X','X','X','X','X','T','X',' ','X',' ','X',' ',' ','X'},
+    {'X','X','X','X','X','X','X','X',' ',' ','X',' ',' ',' ','X','X',' ','X',' ','X',' ',' ','X',' ','X',' ','X','X','X','X'},
+    {'X',' ',' ',' ',' ','X',' ',' ',' ','X','X',' ','X',' ',' ','X',' ','X',' ','X',' ','X','X','X','X',' ',' ',' ',' ','X'},
+    {'X',' ','X','X','X','X',' ','X',' ','X','X',' ','X','X',' ','X',' ',' ',' ',' ',' ',' ',' ','X','X','T','X','X',' ','X'},
+    {'X',' ','T',' ','X','X',' ','X',' ','X',' ','X',' ','X',' ','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ','X',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ','X','X','X',' ','X'},
+    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
 
+/*
 // Matriz del laberinto 2
 const char LABERINTO2[Alto][Ancho] =
 {
@@ -133,6 +280,7 @@ const char LABERINTO4[Alto][Ancho] =
     {'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
     {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
+*/
 
 // Matriz para representar el laberinto actual en juego
 Point Laberinto[Alto][Ancho];
@@ -286,6 +434,7 @@ void moverJugador(Jugador& jugador, Point Laberinto[Alto][Ancho], char move, int
     if (Laberinto[nuevoY][nuevoX].c == 'T') // Recolectar tesoro
     {
         jugador.Tesoro++;
+        jugador.Puntaje += 3;  // Incrementar puntaje por tesoro
         ColorTexto(12);
         cout << "Recolectando tesoro. . ." << endl;
         ColorTexto(7);
@@ -386,11 +535,13 @@ void jugarLaberinto(Jugador& jugador, Point Laberinto[Alto][Ancho], int jugador_
             {
                 if (responderPregunta()) {
                     jugador.Corona = true;
+                    jugador.Puntaje += 7; // Sumar 7 puntos al obtener la corona
                 }
                 ColorTexto(jugador_numero == 1 ? 9 : 10);
                 cout << "Movimientos realizados: " << jugador.Movimientos << endl;
                 cout << "Tesoros recolectados: " << jugador.Tesoro << endl;
                 cout << "Corona : " << (jugador.Corona ? "s" : "n") << endl;
+                cout << "Puntaje: " << jugador.Puntaje << endl;
                 ColorTexto(7);
                 break;
             }
@@ -407,11 +558,11 @@ void jugarLaberinto(Jugador& jugador, Point Laberinto[Alto][Ancho], int jugador_
 
 void imprimirResultados(Jugador jugador1, Jugador jugador2)
 {
-    cout << "Jugador\tMovimientos\tTesoros\tCorona\n";
+    cout << "Jugador\tMovimientos\tTesoros\tCorona\tPuntaje\n";
     ColorTexto(9);
-    cout << "1\t" << jugador1.Movimientos << "\t\t" << jugador1.Tesoro << "\t" << (jugador1.Corona ? "Si" : "No") << "\n";
+    cout << "1\t" << jugador1.Movimientos << "\t\t" << jugador1.Tesoro << "\t" << (jugador1.Corona ? "Si" : "No") << "\t" << jugador1.Puntaje << "\n";
     ColorTexto(10);
-    cout << "2\t" << jugador2.Movimientos << "\t\t" << jugador2.Tesoro << "\t" << (jugador2.Corona ? "Si" : "No") << "\n";
+    cout << "2\t" << jugador2.Movimientos << "\t\t" << jugador2.Tesoro << "\t" << (jugador2.Corona ? "Si" : "No") << "\t" << jugador2.Puntaje << "\n";
 
     if (jugador1.Movimientos < jugador2.Movimientos)
     {
@@ -433,14 +584,16 @@ void imprimirResultados(Jugador jugador1, Jugador jugador2)
 
 void seleccionarLaberinto(Point Laberinto[Alto][Ancho])
 {
-    srand(time(0));
+   /* srand(time(0));
     int Opcion = rand() % 4 + 1;
+    */
+    int Opcion = 1;
     switch (Opcion)
     {
     case 1:
         InicializarLaberinto(LABERINTO1, Laberinto);
         break;
-    case 2:
+   /* case 2:
         InicializarLaberinto(LABERINTO2, Laberinto);
         break;
     case 3:
@@ -449,6 +602,7 @@ void seleccionarLaberinto(Point Laberinto[Alto][Ancho])
     case 4:
         InicializarLaberinto(LABERINTO4, Laberinto);
         break;
+        */
     }
     NodosConectados(Laberinto);
 }
@@ -485,82 +639,56 @@ int main()
 
         switch (Opcion_Menu)
         {
-        case '1':
-            do
-            {
-               /* seleccionarLaberinto(Laberinto1);
+            case '1':
+                    seleccionarLaberinto(Laberinto1);
 
-                system("CLS");
-                cout << "~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~" << endl;
-                cout << "|           A -> Izquierda    S -> Abajo           |" << endl;
-                cout << "|             D -> Derecha    W -> Arriba          |" << endl;
-                cout << "|   Debes llegar hasta la corona para finalizar    |" << endl;
-                cout << "|       ¡Cuidado! Cuando agarres un tesoro (T)     |" << endl;
-                cout << "|   el lugar en el que estaba será una pared       |" << endl;
-                cout << "|      Al llegar a la corona, debes responder      |" << endl;
-                cout << "|             una pregunta de sí o no              |" << endl;
-                cout << "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -" << endl;
-                Sleep(5000);
-                system("CLS");
-                jugador1 = { 0, 0, 0, 0, false };
-                //jugador2 = { 0, 0, 0, 0, false};
-                contadorPreguntas = 0;  // Reiniciar el contador de preguntas
+                    system("CLS");
+                    cout << "~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~" << endl;
+                    cout << "|           A -> Izquierda    S -> Abajo           |" << endl;
+                    cout << "|             D -> Derecha    W -> Arriba          |" << endl;
+                    cout << "|   Debes llegar hasta la corona para finalizar    |" << endl;
+                    cout << "|       ¡Cuidado! Cuando agarres un tesoro (T)     |" << endl;
+                    cout << "|   el lugar en el que estaba será una pared       |" << endl;
+                    cout << "|      Al llegar a la corona, debes responder      |" << endl;
+                    cout << "|             una pregunta de sí o no              |" << endl;
+                    cout << "-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -" << endl;
+                    Sleep(5000);
+                    system("CLS");
+                    jugador1 = { 0, 0, 0, 0, false };
+                    //jugador2 = { 0, 0, 0, 0, false};
+                    contadorPreguntas = 0;  // Reiniciar el contador de preguntas
 
-                ColorTexto(9);
-                cout << "Jugador 1, es tu turno:\n";
-                Sleep(2000);
-                system("CLS");
-                ColorTexto(7);
-                Laberinto1[0][0].c = 'P';
-                jugarLaberinto(jugador1, Laberinto1, 1);
-
-                seleccionarLaberinto(Laberinto1);
-                jugador2 = { 0, 0, 0, 0, false };
-                Laberinto1[0][0].c = 'P';
-                system("CLS");
-                ColorTexto(10);
-                cout << "Jugador 2, es tu turno:\n";
-                Sleep(2000);
-                system("CLS");
-                ColorTexto(7);
-                jugarLaberinto(jugador2, Laberinto1, 2);
-
-                imprimirResultados(jugador1, jugador2);
-                */
-
-                cout << "¿Desea seguir jugando? (s | n): " << endl;
-                char Opcion;
-                Opcion = _getch();
-
-                // Convertir respuesta a minúsculas
-                Opcion = tolower(Opcion);
-                if (Opcion == 's' || Opcion == 'n')
-                {
-                    break;
-                }
-                else
-                {
-                    ColorTexto(4);
-                    cout << "Respuesta no válida." << endl;
-                    cout << "Por favor, responde 's' para si o 'n' para no." << endl;
+                    ColorTexto(9);
+                    cout << "Jugador 1, es tu turno:\n";
+                    Sleep(2000);
+                    system("CLS");
                     ColorTexto(7);
-                    Sleep(500);
-                }
-                Opcion = Opcion == 's' ? 's' : 'n';
-            } while (Opcion != 'n');
-            break;
+                    Laberinto1[0][0].c = 'P';
+                    jugarLaberinto(jugador1, Laberinto1, 1);
 
-        case '2':
-            cout << "Saliendo del programa. . ." << endl;
-            break;
+                    jugador2 = { 0, 0, 0, 0, false };
+                    Laberinto1[0][0].c = 'P';
+                    system("CLS");
+                    ColorTexto(10);
+                    cout << "Jugador 2, es tu turno:\n";
+                    Sleep(2000);
+                    system("CLS");
+                    ColorTexto(7);
+                    jugarLaberinto(jugador2, Laberinto1, 2);
 
+                    imprimirResultados(jugador1, jugador2);
+                    cout << "Volviendo al menú principal. . ." << endl;
+                break;
 
-        default:
-            cout << " " << endl;
-            cout << "|     Por favor, ingrese una opción válida...      |" << endl;
-            cout << " " << endl;
-            break;
+             case '2':
+                    cout << "Saliendo del programa. . ." << endl;
+                break;
+            default:
+                    cout << " " << endl;
+                    cout << "|     Por favor, ingrese una opción válida...      |" << endl;
+                    cout << " " << endl;
+                    break;
         }
-    } while (Opcion_Menu != '2');
-    return 0;
-}
+     } while (Opcion_Menu != '2');
+                    return 0;
+ }
