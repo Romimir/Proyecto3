@@ -12,9 +12,10 @@ Implementado:
   -Tener almacenadas preguntas para la corona y mostrar una pregunta al azar cuando el jugador llegue a esta.
   -Almacenar 3 mapas de distintos laberintos.
   -Laberintos son cargados al azar.
--Agregar puntaje 7 puntos si obtiene la corona y 3 por cada tesoro obtenido.
-Corregir:
-  -Laberinto de 30x30. (1/4)
-  -Cambiar las X del laberinto por ▓.
+  -Agregar puntaje 7 puntos si obtiene la corona y 3 por cada tesoro obtenido.
+  -Laberintos de 30x30.
   -Hacer que el laberinto al azar sea el mismo para ambos jugadores.
+Corregir:
+  -Cambiar las X del laberinto por ▓.
+  
 Falta:
