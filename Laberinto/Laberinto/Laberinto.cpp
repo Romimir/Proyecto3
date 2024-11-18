@@ -11,7 +11,8 @@
 using namespace std;
 
 // Estructura para representar un punto en el laberinto, que puede contener tesoros o una corona
-struct Point {
+struct Point 
+{
     int x, y;
     bool EsTesoro, Corona;  // Indicadores de tesoro y corona en el punto
     char c;                 // Representa el carácter del punto (espacio, muro, tesoro, corona)
@@ -19,7 +20,8 @@ struct Point {
 };
 
 // Estructura para representar al jugador, con posición, tesoros recolectados y movimientos realizados
-struct Jugador {
+struct Jugador 
+{
     int x, y;          // Posición del jugador
     int Tesoro;        // Contador de tesoros recolectados
     int Movimientos;   // Total de movimientos realizados
@@ -36,148 +38,13 @@ const int Alto = 30;
 // Definición de laberintos
 // ' ' representa caminos, 'X' representa muros, 'T' representa tesoros, 'C' representa la corona
 // Matriz del laberinto 1
-
-
-/*
-  XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X     X   X          X   X CXX
-XTXXX   X XXXX XXX XXX XXX XXX
-X   X XXX X    X   T     X   X
-XX XX X   X XXXXXX X X X  XX X
-X     X XXX X      X XXXX XX X
-XXXTXXX X   XXX XX X    X T  X
-X   X   X XXX   XXXXXX XX X XX
-X X X XXX X   X  X   X   XX  X
-X X       X XXXX X X XXXXX X X
-XTXXX XXXXXXXXXX X X     X X X
-X           XXXX X XXXTX X   X
-XXX XXXXXXX    XXX     X   XXX
-X         X XXXX XXXXX XXXXXXX
-XXX X XXX X X        X       X
-X   X  X  XXXXXX X X XXXXXXX X
-X X XX XX   X    X X         X
-X  XX  XXXXXX XXXXXXX XXXXXXXX
-XX XXXXX      X   X XXX      X
-XX     X XXXTXX XXX X   X XXXX
-XXXXXX X X      X X X XXX X  X
-X    X XXX XXXXXX X XXX     XX
-X XX X     X      X     XXX XX
-X  X   XX X XXXXXXXXXTX X X  X
-XXXXXXXX  X   XX X X  X X XXXX
-X    X   XX X  X X X XXXX    X
-X XXXX X XX XX X       XXTXX X
-X T XX X X X X XXX X X       X
-XXX    X   X X     X XXXXXXX X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-
-
-
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXCXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXCXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXCXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-*/
 const char LABERINTO1[Alto][Ancho] =
 {
     {' ',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
     {'X',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ','C','X','X'},
     {'X','T','X','X','X',' ',' ',' ','X',' ','X','X','X','X',' ','X','X','X',' ','X','X','X',' ','X','X','X',' ','X','X','X'},
     {'X',' ',' ',' ','X',' ','X','X','X',' ','X',' ',' ',' ',' ','X',' ',' ',' ','T',' ',' ',' ',' ',' ','X',' ',' ',' ','X'},
-    {'X','X',' ','X','X',' ','X',' ',' ',' ','X',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ',' ','X','X',' ','X'},
+    {'X','X',' ','X','X',' ','X',' ',' ',' ','X',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ','X'},
     {'X',' ',' ',' ',' ',' ','X',' ','X','X','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X','X','X','X',' ','X','X',' ','X'},
     {'X','X','X','T','X','X','X',' ','X',' ',' ',' ','X','X','X',' ','X','X',' ','X',' ',' ',' ',' ','X',' ','T',' ',' ','X'},
     {'X',' ',' ',' ','X',' ',' ',' ','X',' ','X','X','X',' ',' ',' ','X','X',' ','X',' ','X',' ','X','X',' ','X',' ','X','X'},
@@ -190,8 +57,8 @@ const char LABERINTO1[Alto][Ancho] =
     {'X','X','X',' ','X',' ','X','X','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X'},
     {'X',' ',' ',' ','X',' ',' ','X',' ',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X','X','X','X','X','X','X',' ','X'},
     {'X',' ','X',' ','X','X',' ','X','X',' ',' ',' ','X',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-    {'X',' ',' ','X','X',' ',' ','X','X','X','X','X','X',' ','X','X','X','X','X','X','X',' ','X','X','X','X','X','X','X','X'},
-    {'X','X',' ','X','X','X','X','X',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ','X','X','X',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X','X','X',' ',' ','X','X','X','X','X','X',' ','X','X','X','X','X','X','X',' ','X','X','X','X','X','X',' ','X'},
+    {'X',' ',' ','X','X','X','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X','X',' ',' ',' ',' ',' ',' ','X'},
     {'X','X',' ',' ',' ',' ',' ','X',' ','X','X','X','T','X','X',' ','X','X','X',' ','X',' ',' ',' ','X',' ','X','X','X','X'},
     {'X','X','X','X','X','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X','X','X',' ','X',' ',' ','X'},
     {'X',' ',' ',' ',' ','X',' ','X','X','X',' ','X','X','X','X','X','X',' ','X',' ','X','X','X',' ',' ',' ',' ',' ','X','X'},
@@ -205,85 +72,115 @@ const char LABERINTO1[Alto][Ancho] =
     {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
 
-/*
+
 // Matriz del laberinto 2
 const char LABERINTO2[Alto][Ancho] =
 {
-    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
-    {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ',' ',' ',' ','X'},
-    {'X',' ','X','X','X','T','X','X',' ','X',' ',' ',' ',' ','X','X','X','X','T','X'},
-    {'X',' ','T',' ',' ',' ',' ','X',' ','X',' ','X',' ','T','X','X',' ',' ',' ','X'},
-    {'X',' ','X','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ','X',' ','X'},
-    {'X',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X','X','X',' ','X',' ','X',' ','X'},
-    {'X',' ','X','X','X','X','X','X',' ','X',' ',' ',' ',' ',' ','X',' ','X','X','X'},
-    {'X',' ','T',' ',' ',' ',' ',' ',' ','X',' ','X','X',' ','X','X',' ',' ',' ','X'},
-    {'X',' ',' ',' ','X','X','X','X','X','X','X','C','X','X','X','X',' ','X','T','X'},
-    {'X','X','X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ','X'},
-    {'X',' ','X','X',' ','X','X','X','X','X','X',' ','X','X','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ','X'},
-    {'X',' ','X',' ','T',' ','X',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X'},
-    {'X','X','X',' ','X',' ','X','T','X','X','X',' ','T',' ',' ','X',' ',' ',' ','X'},
-    {'X',' ',' ',' ','X',' ','X',' ','X',' ',' ',' ','X','X',' ','X',' ','X','X','X'},
-    {'X',' ','X','X',' ',' ','X',' ','X',' ','X',' ','X',' ',' ','X',' ',' ',' ','X'},
-    {'X','X',' ','X',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ','X','X','X',' ','X'},
-    {'X',' ',' ','X',' ','X',' ','X','X',' ','X','T','X','X',' ',' ',' ','X',' ','X'},
-    {'X',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ',' ','X'},
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
+    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ','X',' ','X'},
+    {'X','X','X','X',' ','X','X','X',' ','X','X',' ','X',' ','X','X','X','X','X','X',' ','X',' ',' ',' ','X',' ','X',' ','X'},
+    {'X',' ',' ','T',' ',' ',' ','X',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ','T',' ','X','X','X',' ','X',' ','X'},
+    {'X','X',' ','X','X','X',' ','X','X',' ','X','X','X',' ','X',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X',' ',' ',' ',' ','T',' ','X',' ','X',' ',' ',' ','X'},
+    {'X','X','X','X','X','X',' ','X','X','X','T',' ','X',' ','X',' ','X',' ','X','X',' ','X','X','X',' ','X','X',' ','X','X'},
+    {'X',' ',' ',' ',' ','X',' ','X',' ',' ','X',' ','X',' ',' ',' ',' ',' ','X',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X','X','X','X',' ','X','X',' ','X','X','X','X','X',' ','X'},
+    {'X',' ','X',' ',' ','X','X','X','T','X','X','X','X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','T',' ',' ','X','X','X',' ','X','X','X','X','X','X','X',' ','X',' ','X'},
+    {'X','X','X','X','X','X','X','X','X','X','X',' ','X',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X','X','X','X','X',' ','X',' ','X','X','X','X',' ','X','X','X','X','X','X'},
+    {'X','X','X','X','X','X','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X','X','X',' ','X',' ','X','X','X','X','X','X','T','X','X',' ','X','X','X'},
+    {'X','X','X','X','X','X','X',' ','X',' ','X',' ','C','X',' ','X','X','X',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ',' ',' ','X',' ','X',' ','X',' ','X','X',' ','X',' ','X',' ','X','X','X','X','X',' ','X','X','X',' ','X'},
+    {'X',' ','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+    {'X',' ','T',' ',' ',' ','X',' ','X',' ','X','X','X','X',' ','X',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ','X','X','X','X','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X','X','X',' ','X',' ','X','X','X',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ','X','X','X','X','X',' ',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ','X','X','X',' ','X'},
+    {'X','X','X','X',' ','X','X','X','X',' ','X',' ','X',' ','X','X','X','X',' ','X',' ','X','X','X','X','X',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ','X','X','X','X','X',' ','X','X','X',' ','X',' ','X',' ','X','X','X','X',' ','X','X','X',' ','X',' ','X',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ','X',' ',' ',' ','X',' ','X',' ','X','X','X'},
+    {'X',' ','T',' ','X','X','X','X','X',' ','X',' ','X',' ','X',' ','X','X','X','X',' ','X','X','X','X','X',' ','X',' ','X'},
+    {'X',' ','X',' ','X',' ',' ',' ','X',' ','X',' ','X',' ','T',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ','X',' ','X',' ','X','X','X',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X','X',' ','X','X',' ','X',' ','X'},
+    {'X',' ',' ',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','X'},
+    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
 
-// Matriz del laberinto 3
+//Matriz del laberinto 3
 const char LABERINTO3[Alto][Ancho] =
-{
-    {' ',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ','X','X',' ','X','X',' ','X','X','X','X','X',' ',' ','C','X'},
-    {'X','X','X',' ','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X'},
-    {'X',' ',' ',' ','X',' ',' ',' ','X','X','T','X','X','X','X','X','X',' ',' ','X'},
-    {'X',' ','X','X',' ',' ','X','X','X',' ',' ',' ','X',' ',' ',' ',' ',' ','T','X'},
-    {'X',' ','X','T','X',' ',' ',' ',' ',' ','X','X',' ','X',' ','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ','X','X',' ','X','X','X','X',' ','X',' ','X',' ',' ',' ','X'},
-    {'X','X','X','X',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X',' ','X','X'},
-    {'X',' ',' ','X',' ','X',' ','X','X','X','X',' ','X','X',' ',' ',' ',' ','X','X'},
-    {'X','X',' ','T',' ','X',' ','X',' ',' ',' ',' ','X','X',' ','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ','X','X','X','T','X',' ','X','X',' ',' ',' ','X',' ','X'},
-    {'X',' ','X','X','X',' ','X',' ',' ',' ','X',' ',' ',' ','T','X',' ','X','X','X'},
-    {'X',' ',' ',' ','X',' ','X',' ','X','X','X',' ','X',' ','X',' ',' ',' ',' ','X'},
-    {'X','X','T','X','X',' ','T',' ',' ',' ',' ',' ','X',' ','X','X','X',' ','X','X'},
-    {'X',' ',' ',' ',' ',' ','X','X','X','X','X','X','X',' ',' ',' ','X',' ',' ','X'},
-    {'X',' ','X',' ','X','X','X',' ',' ',' ',' ','X','X',' ','X',' ',' ','X','X','X'},
-    {'X',' ','X','X','X',' ',' ',' ',' ','T',' ',' ',' ',' ','X','X',' ','X',' ','X'},
-    {'X',' ',' ',' ','X','X','X',' ','X','X','X','X','X',' ','X','X','T','X','X','X'},
-    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','X'},
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
+{ 
+    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ','X',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ','X','X','X','X','X','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X',' ','X'},
+    {'X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X',' ','T',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ',' ',' ','X',' ','X','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ','X','X','X','X',' ','X','X','X',' ','X'},
+    {'X',' ','X','T','X',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ',' ','X',' ',' ','X','X','X',' ','X','X','X','X','X',' ','X','X','X',' ','X','X','X','X','X','X','X','X'},
+    {'X',' ','X',' ','X','X',' ','X','X',' ','X',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ','X',' ',' ','X',' ','X',' ','X','X','X','X','X','X','X','T','X','X','X','X','X',' ','X','X'},
+    {'X','X','X','X','X','X',' ','X','X',' ','X',' ','T',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X','X','X','X','X',' ','X'},
+    {'X',' ','X','X','X','X','X','X','X','X','X','X','X',' ','X',' ','X',' ','X','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ','X','X','X','X','X',' ','X',' ','X'},
+    {'X','X','X','X','X',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','T',' ','X',' ',' ',' ','X',' ','X',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ','X',' ','X','X','X',' ','T',' ',' ',' ','X'},
+    {'X',' ','X',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X','X','X'},
+    {'X',' ','X',' ','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ',' ','X','X','X',' ','X',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ','X','X','X',' ','X',' ','X','X','X',' ',' ',' ',' ',' ',' ',' ',' ','X','X','X','X',' ','X','X','X','X'},
+    {'X',' ','T',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X','X','X','X','X','X','X',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X','X','T','X','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ','X','X','X','X','X','X',' ','X'},
+    {'X',' ','X',' ',' ','X',' ','X','X','X','X',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ',' ','X',' ',' ',' ',' ',' ','X'},
+    {'X',' ',' ',' ','X',' ',' ',' ',' ',' ','X','X','X','X','X',' ','X',' ','X',' ','X','X',' ','X',' ','X','X','X',' ','X'},
+    {'X',' ','X',' ','X','X','X','X','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X'},
+    {'X',' ','X',' ','X',' ',' ',' ','X',' ','X',' ','X','T','X',' ','X','X','X','X','X','X','X','X','X','X',' ','X',' ','X'},
+    {'X',' ','X','X','X','X','X',' ','T',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X','X','X'},
+    {'X',' ','X','C',' ',' ',' ',' ','X',' ','X','X','X',' ','X','X','X','X','X','X',' ',' ',' ','X',' ','X',' ',' ',' ','X'},
+    {'X',' ','X','X','X','X','X',' ','X','X','X',' ',' ',' ','X',' ',' ',' ',' ','X',' ','X',' ','X',' ','X','X','X',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X','X','X','X',' ','X',' ','X',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ',' ',' ',' ','X',' ','X',' ','X',' ','X',' ','X',' ',' ',' ','X'},
+    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
 
 // Matriz del laberinto 4
 const char LABERINTO4[Alto][Ancho] =
 {
-    {' ',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ',' ',' ','X'},
-    {'X','X','X','T','X','X','X',' ','X','X','T','X','X','X',' ','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ','X'},
-    {'X',' ','X','T','X','X','X',' ','X','X','X','T','X','X','X','X','X','X',' ','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-    {'X',' ','X',' ','X','X','X','X','X','X','X','X','X','X','X','X','X','T','X','X'},
-    {'X',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ','X',' ','X',' ','X','X'},
-    {'X','X','X',' ','X','T','X','X','X',' ','X','X','X',' ','X',' ',' ',' ',' ','X'},
-    {'X',' ','X',' ','X',' ',' ',' ','X',' ','X',' ',' ',' ','X','X','T','X','X','X'},
-    {'X',' ',' ',' ','X',' ','X',' ',' ',' ','X',' ','X','X','X',' ',' ',' ','X','X'},
-    {'X',' ','X','X','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X','X'},
-    {'X',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ','X',' ',' ',' ','X',' ',' ','X'},
-    {'X','X','X','X','X','X','X','X','X',' ','X','X','X','T','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','T',' ','X',' ',' ',' ',' ','X'},
-    {'X',' ','X','X','X','T','X',' ','X','X','X','X','X',' ','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-    {'X','X','C','X','X',' ','X','X','X','X',' ','X','X','X','X','X','X','X','X','X'},
-    {'X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
-    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
+    {' ','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'},
+    {' ',' ','X',' ',' ',' ',' ','X',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ','X',' ',' ','X',' ','X','X','X','C','X','X','X',' ','X',' ','X','X','X','T','X','X','X','X','X',' ','X'},
+    {'X',' ',' ',' ','X',' ','X','X',' ','X',' ',' ','X',' ',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X','X','X',' ',' ',' ',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X','X','X','X'},
+    {'X',' ',' ',' ','X','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ',' ',' ','X'},
+    {'X',' ','X','X','X',' ',' ','X',' ','X',' ','X',' ','X',' ','X',' ','T',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+    {'X',' ',' ',' ','X',' ','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+    {'X','X','X',' ',' ',' ',' ','X','X','X','X','X',' ','X','X','X','X','X',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+    {'X',' ','X',' ','X',' ','X','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X',' ','X',' ','X'},
+    {'X',' ','X','X','X',' ',' ',' ','X','X','X','X','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ','X',' ','X'},
+    {'X',' ',' ',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','T',' ',' ',' ','X',' ','X','T','X','X','X',' ','X'},
+    {'X',' ','X','X','X','X','X',' ',' ',' ','X','X','X','X','X',' ','X','X',' ','X','X','X',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','T',' ',' ',' ',' ',' ','X','X','X','X',' ',' ',' ',' ',' ','X',' ','X',' ','X','X','X',' ','X','X','X','X','X'},
+    {'X',' ','X',' ','X',' ','X','X','X',' ',' ',' ',' ','X','X','X',' ','X',' ','T',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X',' ','X',' ','X',' ',' ',' ',' ',' ','X','X',' ',' ',' ','X',' ','X',' ','X','X','X','X','X','X',' ','X','X',' ','X'},
+    {'X',' ',' ',' ','X',' ','X','X','X','X','X',' ',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ','X','X',' ',' ',' ','X'},
+    {'X','X','X','X','X',' ','T',' ',' ',' ',' ','X','X','X',' ','X',' ','X','X','X','X','X','X',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ',' ',' ',' ',' ','X','X','X','X','X','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ','X','X','X','X','X','X',' ','X'},
+    {'X',' ','X','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X','X','X','X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ','X',' ','X','X','X','X','X','X','X','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X','X',' ',' ',' ','X'},
+    {'X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X','X','X',' ','X','X','X','X',' ','X',' ','X',' ',' ','X','X','X',' ','X'},
+    {'X',' ','X','X','T','X','X','X','X','X',' ','X',' ',' ',' ',' ',' ',' ','X','X','X',' ',' ','X',' ','X',' ',' ',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ','X',' ','T',' ','X','X','X','X','X','X',' ','X','X','X','X',' ','X',' ','X','X','X'},
+    {'X','X','X','X','X','X',' ','X','X','X',' ','X',' ',' ',' ','X',' ',' ',' ',' ','X',' ',' ',' ',' ','X',' ',' ',' ','X'},
+    {'X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X',' ','X',' ','X','X','X','X','X','X','X',' ','X','X','X',' ','X'},
+    {'X',' ','X','X','X','X','X','X','X','X','X','X',' ','X',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ','X'},
+    {'X',' ',' ',' ','X',' ',' ',' ',' ','X',' ',' ',' ','X',' ','X',' ','X','X','X','X','X','X','X','T','X','X','X',' ','X'},
+    {'X',' ','X',' ',' ',' ','X','X',' ',' ',' ','X',' ','X',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X'},
+    {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X','X'}
 };
-*/
 
 // Matriz para representar el laberinto actual en juego
 Point Laberinto[Alto][Ancho];
+Point LaberintoOriginal[Alto][Ancho];
 
 #pragma endregion
 
@@ -297,7 +194,7 @@ struct Pregunta
 //Lista de preguntas con respectivas respuestas para la trivia
 vector<Pregunta> Preguntas =
 {
-    {"¿Tabby es lindo?", "n"},
+    {"¿Tabby es lindo?", "s"},
     {"¿Tabby odia el papel higiénico?", "n"},
     {"¿Tabby es naranja?", "n"},
     {"¿El collar de tabby es rojo?", "s"},
@@ -584,16 +481,15 @@ void imprimirResultados(Jugador jugador1, Jugador jugador2)
 
 void seleccionarLaberinto(Point Laberinto[Alto][Ancho])
 {
-   /* srand(time(0));
+    srand(time(0));
     int Opcion = rand() % 4 + 1;
-    */
-    int Opcion = 1;
+   
     switch (Opcion)
     {
     case 1:
         InicializarLaberinto(LABERINTO1, Laberinto);
         break;
-   /* case 2:
+    case 2:
         InicializarLaberinto(LABERINTO2, Laberinto);
         break;
     case 3:
@@ -602,7 +498,7 @@ void seleccionarLaberinto(Point Laberinto[Alto][Ancho])
     case 4:
         InicializarLaberinto(LABERINTO4, Laberinto);
         break;
-        */
+        
     }
     NodosConectados(Laberinto);
 }
@@ -611,7 +507,6 @@ int main()
 {
     setlocale(LC_CTYPE, "es_ES.UTF-8");
     char Opcion_Menu;
-    char Opcion = '0';
     Point Laberinto1[Alto][Ancho];
     Jugador jugador1 = { 0, 0, 0, 0, false };
     Jugador jugador2 = { 0, 0, 0, 0, false };
